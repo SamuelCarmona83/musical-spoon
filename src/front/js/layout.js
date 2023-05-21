@@ -10,6 +10,7 @@ import injectContext from "./store/appContext";
 
 import Navbar from "./component/navbar";
 import { Footer } from "./component/footer";
+import { NotFound } from "./pages/notFound";
 
 //create your first component
 const Layout = () => {
@@ -20,7 +21,7 @@ const Layout = () => {
     if (!process.env.BACKEND_URL || process.env.BACKEND_URL == "") return <BackendURL />;
 
     return (
-        <div>
+        <div className="flex flex-col min-h-screen">
             <BrowserRouter basename={basename}>
                 <ScrollToTop>
                     <Navbar />
@@ -28,9 +29,9 @@ const Layout = () => {
                         <Route element={<Home />} path="/" />
                         <Route element={<Demo />} path="/demo" />
                         <Route element={<Single />} path="/single/:theid" />
-                        <Route element={<h1>Not found!</h1>} />
+                        <Route element={<NotFound />} />
                     </Routes>
-                    {/* <Footer /> */}
+                    <Footer />
                 </ScrollToTop>
             </BrowserRouter>
         </div>
