@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 export const Publish = () => {
     return (
@@ -23,26 +24,27 @@ export const Publish = () => {
                         </form>
                     </header>
                     <ul className="text-start p-4 sm:px-8 sm:pt-6 sm:pb-8 lg:p-4 xl:px-8 xl:pt-6 xl:pb-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-4 text-sm leading-6">
-                        {[1, 2, 3, 4, 5].map((id) => <li key={id} className='hover:border-primary hover:border-info hover:bg-primary hover:text-primary group w-full flex flex-col items-start justify-center rounded-md border-2 border-solid border-info text-sm leading-6 text-dark font-medium py-3 px-8'>
-                            <div className="group-hover:text-white uppercase font-semibold text-dark">
-                                project tittle
-                            </div>
-                            <div>
-                                <span className="sr-only">Category</span>
-                                <span className="group-hover:text-info">category</span>
-                            </div>
-                            <div className="col-start-2 row-start-1 row-end-3 sm:mt-4 lg:mt-0 xl:mt-4">
-                                <dt className="sr-only">Users</dt>
-                                <dd className="flex justify-end sm:justify-start lg:justify-end xl:justify-start -space-x-1.5">
-                                    <img src="https://i.pravatar.cc/300" alt="name_user" className="w-6 h-6 rounded-full bg-slate-100 ring-2 ring-white" loading="lazy" />
-                                    <img src="https://i.pravatar.cc/301" alt="name_user" className="w-6 h-6 rounded-full bg-slate-100 ring-2 ring-white" loading="lazy" />
-                                    <img src="https://i.pravatar.cc/209" alt="name_user" className="w-6 h-6 rounded-full bg-slate-100 ring-2 ring-white" loading="lazy" />
-                                    <img src="https://i.pravatar.cc/304" alt="name_user" className="w-6 h-6 rounded-full bg-slate-100 ring-2 ring-white" loading="lazy" />
+                        {[1, 2, 3, 4, 5].map((id) => <Link key={id} to={`/piso/${id}`}>
+                            <li className='hover:border-primary hover:border-info hover:bg-primary hover:text-primary group w-full flex flex-col items-start justify-center rounded-md border-2 border-solid border-info text-sm leading-6 text-dark font-medium py-3 px-8'>
+                                <div className="group-hover:text-white uppercase font-semibold text-dark">
+                                    project tittle
+                                </div>
+                                <div>
+                                    <span className="sr-only">Category</span>
+                                    <span className="group-hover:text-info">category</span>
+                                </div>
+                                <div className="col-start-2 row-start-1 row-end-3 sm:mt-4 lg:mt-0 xl:mt-4">
+                                    <dt className="sr-only">Users</dt>
+                                    <dd className="flex justify-end sm:justify-start lg:justify-end xl:justify-start -space-x-1.5">
+                                        <img src="https://i.pravatar.cc/300" alt="name_user" className="w-6 h-6 rounded-full bg-slate-100 ring-2 ring-white" loading="lazy" />
+                                        <img src="https://i.pravatar.cc/301" alt="name_user" className="w-6 h-6 rounded-full bg-slate-100 ring-2 ring-white" loading="lazy" />
+                                        <img src="https://i.pravatar.cc/209" alt="name_user" className="w-6 h-6 rounded-full bg-slate-100 ring-2 ring-white" loading="lazy" />
+                                        <img src="https://i.pravatar.cc/304" alt="name_user" className="w-6 h-6 rounded-full bg-slate-100 ring-2 ring-white" loading="lazy" />
 
-                                </dd>
-
-                            </div>
-                        </li>)}
+                                    </dd>
+                                </div>
+                            </li>
+                        </Link>)}
                         <li className="flex">
                             <a href="/new" className="hover:border-primary hover:border-solid hover:bg-secondary bg-light hover:text-primary group w-full flex flex-col items-center justify-center rounded-md border-2 border-dashed border-info text-sm leading-6 text-dark font-medium py-3">
                                 <svg className="group-hover:text-primary mb-1 text-slate-400" width="20" height="20" fill="currentColor" aria-hidden="true">
