@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
-import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import { Bars3Icon, BellIcon, XMarkIcon, HomeModernIcon } from '@heroicons/react/24/outline'
 import { Link } from 'react-router-dom'
 
 const navigation = [
@@ -33,14 +33,14 @@ export default function Navbar() {
 								</Disclosure.Button>
 							</div>
 							<div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-								<div className="flex flex-shrink-0 items-center hidden">
+								<div className="flex flex-shrink-0 items-center text-white">
 									<a className="block h-8 w-auto lg:hidden"
 									>
-										Logo
+										<HomeModernIcon className="block h-6 w-6" />
 									</a>
 									<a className="hidden h-8 w-auto lg:block"
 									>
-										Logo
+										<HomeModernIcon className="block h-6 w-6" />
 									</a>
 								</div>
 								<div className="hidden sm:ml-6 sm:block">
