@@ -1,12 +1,13 @@
 import React, { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import { Link } from 'react-router-dom'
 
 const navigation = [
-	{ name: 'Dashboard', href: '#', current: true },
-	{ name: 'Team', href: '#', current: false },
-	{ name: 'Projects', href: '#', current: false },
-	{ name: 'Calendar', href: '#', current: false },
+	{ name: 'Dashboard', href: '/', current: false },
+	{ name: 'Houses', href: '/publicar', current: false },
+	{ name: 'Projects', href: '/items', current: false },
+	{ name: 'Calendar', href: '/calendar', current: false },
 ]
 
 function classNames(...classes) {
@@ -45,9 +46,9 @@ export default function Navbar() {
 								<div className="hidden sm:ml-6 sm:block">
 									<div className="flex space-x-4">
 										{navigation.map((item) => (
-											<a
+											<Link
 												key={item.name}
-												href={item.href}
+												to={item.href}
 												className={classNames(
 													item.current ? 'bg-dark text-white' : 'text-gray-300 hover:bg-accent hover:text-white',
 													'rounded-md px-3 py-2 text-sm font-medium'
@@ -55,7 +56,7 @@ export default function Navbar() {
 												aria-current={item.current ? 'page' : undefined}
 											>
 												{item.name}
-											</a>
+											</Link>
 										))}
 									</div>
 								</div>
@@ -133,8 +134,8 @@ export default function Navbar() {
 							{navigation.map((item) => (
 								<Disclosure.Button
 									key={item.name}
-									as="a"
-									href={item.href}
+									as="Link"
+									to={item.href}
 									className={classNames(
 										item.current ? 'bg-dark text-white' : 'text-gray-300 hover:bg-accent hover:text-white',
 										'block rounded-md px-3 py-2 text-base font-medium'
