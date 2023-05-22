@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 const navigation = [
 	{ name: 'Dashboard', href: '/', current: false },
 	{ name: 'Houses', href: '/publicar', current: false },
-	{ name: 'Projects', href: '/items', current: false },
+	{ name: 'Explore', href: '/explore', current: false },
 	{ name: 'Calendar', href: '/calendar', current: false },
 ]
 
@@ -94,12 +94,12 @@ export default function Navbar() {
 										<Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
 											<Menu.Item>
 												{({ active }) => (
-													<a
-														href="#"
+													<Link
+														to="/profile/me"
 														className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-accent')}
 													>
 														Your Profile
-													</a>
+													</Link>
 												)}
 											</Menu.Item>
 											<Menu.Item>

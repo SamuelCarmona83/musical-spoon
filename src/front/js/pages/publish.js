@@ -46,12 +46,12 @@ export const Publish = () => {
                             </li>
                         </Link>)}
                         <li className="flex">
-                            <a href="/new" className="hover:border-primary hover:border-solid hover:bg-secondary bg-light hover:text-primary group w-full flex flex-col items-center justify-center rounded-md border-2 border-dashed border-info text-sm leading-6 text-dark font-medium py-3">
+                            <Link to="/new/piso/1" className="hover:border-primary hover:border-solid hover:bg-secondary bg-light hover:text-primary group w-full flex flex-col items-center justify-center rounded-md border-2 border-dashed border-info text-sm leading-6 text-dark font-medium py-3">
                                 <svg className="group-hover:text-primary mb-1 text-slate-400" width="20" height="20" fill="currentColor" aria-hidden="true">
                                     <path d="M10 5a1 1 0 0 1 1 1v3h3a1 1 0 1 1 0 2h-3v3a1 1 0 1 1-2 0v-3H6a1 1 0 1 1 0-2h3V6a1 1 0 0 1 1-1Z" />
                                 </svg>
                                 New project
-                            </a>
+                            </Link>
                         </li>
                     </ul>
                 </div>
