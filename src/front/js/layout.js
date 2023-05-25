@@ -15,6 +15,7 @@ import { Publish } from "./pages/publish";
 import { FloorDetail } from "./pages/floorDetails";
 import { Profile } from "./pages/profile";
 import { NewFloor } from "./pages/newFloor";
+import { ExploreFloors } from "./pages/exploreFloors";
 
 //create your first component
 const Layout = () => {
@@ -31,6 +32,9 @@ const Layout = () => {
                     <Navbar />
                     <Routes>
                         <Route element={<Home />} path="/" />
+
+                        <Route element={<ExploreFloors />} path="/explore" />
+
                         <Route element={<Demo />} path="/demo" />
                         <Route element={<Publish />} path="/publicar" />
                         <Route element={<Profile />} path="/profile/:id" />
