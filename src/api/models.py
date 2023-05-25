@@ -47,5 +47,8 @@ class Piso(db.Model):
             "id": self.id,
             "name": self.name,
             "description": self.description,
-            "area": str(self.area) + ' m^2'
+            "area": str(self.area) + ' m^2',
+            "baths": self.bathrooms_number,
+            "rooms": self.rooms_number,
+            "parkings": self.parking_slots
         }
