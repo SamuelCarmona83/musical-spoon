@@ -31,3 +31,10 @@ def new_piso():
     return jsonify(nuevo_piso.serialize()),200 #Piso searilzado
 
     #return jsonify({ "message" : "se ejecuto el endpoint /piso 👽️" }), 200
+
+@api.route('/piso', methods=['GET'])
+def get_pisos():
+
+    all_pisos = Piso.query.all() # lista de Objetos Piso guardados en la base de datos
+
+    return jsonify([ piso.serialize() for piso in all_pisos]), 200

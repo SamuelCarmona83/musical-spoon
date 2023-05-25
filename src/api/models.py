@@ -44,7 +44,7 @@ class Piso(db.Model):
 
     def serialize(self):
         return {
-            #id:
+            "id": self.id,
             "name": self.name,
             "description": self.description,
             "area": str(self.area) + ' m^2'
