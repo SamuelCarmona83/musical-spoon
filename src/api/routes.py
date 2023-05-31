@@ -26,12 +26,17 @@ def login():
     email = request.json.get("email", None)
     password = request.json.get("password", None)
 
-    
-
-    if email != "test" or password != "test":
+    if email == None or password == None:
         return jsonify({"msg": "Bad email or password ⛔️"}), 401
-
-    return jsonify({ "token" : create_access_token(identity="yarumisrodriguez@gmail.com") })
+    
+    search_user = User.query.filter_by(email=email).one_or_none()
+    if search_user != None:
+        
+        if search_user.password == password:
+            return jsonify({ "token" : create_access_token(identity=search_user.email) }), 200
+        else:
+            return jsonify({ "message" : "password doesnt match, be carefull 🔓️ "}), 401
+    return jsonify({ "message" : "user not found "}), 404
 
 
 @api.route('/piso', methods=['POST'])
