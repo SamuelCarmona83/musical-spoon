@@ -2,6 +2,7 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 import os
+import datetime
 from flask import Flask, request, jsonify, url_for, send_from_directory
 from flask_migrate import Migrate
 from flask_swagger import swagger
@@ -11,6 +12,8 @@ from api.models import db
 from api.routes import api
 from api.admin import setup_admin
 from api.commands import setup_commands
+from flask_jwt_extended import JWTManager
+
 
 #from models import Person
 
@@ -32,6 +35,12 @@ db.init_app(app)
 
 # Allow CORS requests to this API
 CORS(app)
+
+# Setup the Flask-JWT-Extended extension
+app.config["JWT_SECRET_KEY"] = "4@#$#$42#$@#$SIUUUUUUUUUUUUUUUUUU!777"  # Change this!
+app.config["JWT_ACCESS_TOKEN_EXPIRES"] = datetime.timedelta(minutes=45)
+
+jwt = JWTManager(app)
 
 # add the admin
 setup_admin(app)

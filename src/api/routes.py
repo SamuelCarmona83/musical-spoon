@@ -5,6 +5,11 @@ from flask import Flask, request, jsonify, url_for, Blueprint
 from api.models import db, User, Piso
 from api.utils import generate_sitemap, APIException
 
+from flask_jwt_extended import create_access_token
+from flask_jwt_extended import get_jwt_identity
+from flask_jwt_extended import jwt_required
+
+
 api = Blueprint('api', __name__)
 
 @api.route('/hello', methods=['POST', 'GET'])
@@ -14,6 +19,20 @@ def handle_hello():
         "message": "Hello we are CCS PT XLI 🐏"
     }
     return jsonify(response_body), 200
+
+@api.route('/login', methods=['POST'])
+def login():
+
+    email = request.json.get("email", None)
+    password = request.json.get("password", None)
+
+    
+
+    if email != "test" or password != "test":
+        return jsonify({"msg": "Bad email or password ⛔️"}), 401
+
+    return jsonify({ "token" : create_access_token(identity="yarumisrodriguez@gmail.com") })
+
 
 @api.route('/piso', methods=['POST'])
 def new_piso():
@@ -48,8 +67,11 @@ def new_piso():
     
     except Exception as err:
         return jsonify({ "message" : "Ah ocurrido un error inesperado ‼️" }), 500
+    
+
 
 @api.route('/piso', methods=['GET'])
+@jwt_required()
 def get_pisos():
 
     all_pisos = Piso.query.all() # lista de Objetos Piso guardados en la base de datos
