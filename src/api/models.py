@@ -11,6 +11,15 @@ class User(db.Model):
     name = db.Column(db.String(80), nullable=False)
     last_name = db.Column(db.String(80), nullable=False)
     
+    def __init__(self, name, last_name, email, password):
+        self.name = name
+        self.last_name = last_name
+        self.email = email
+
+        self.password = password
+
+        self.is_active = True   
+
     def __repr__(self):
         return f'<User {self.email}>'
 
