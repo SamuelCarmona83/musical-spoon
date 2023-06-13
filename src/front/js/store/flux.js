@@ -14,7 +14,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					background: "white",
 					initial: "white"
 				}
-			]
+			],
+			token: localStorage.getItem('token'),
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -49,8 +50,24 @@ const getState = ({ getStore, getActions, setStore }) => {
 				setStore({ demo: demo });
 			},
 			getPisos: async () => {
+
+				const store = getStore()
+
 				try {
-					const resp = await fetch(process.env.BACKEND_URL + "/api/piso")
+					const resp = await fetch(process.env.BACKEND_URL + "/api/piso", {
+						method: "GET", // *GET, POST, PUT, DELETE, etc.
+						mode: "cors", // no-cors, *cors, same-origin
+						//cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+						//credentials: "same-origin", // include, *same-origin, omit
+						headers: {
+							//"Content-Type": "application/json",
+							"Authorization": "Bearer " + store.token
+							// 'Content-Type': 'application/x-www-form-urlencoded',
+						},
+						//redirect: "follow", // manual, *follow, error
+						//referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+						//body: JSON.stringify(credentials) // body data type must match "Content-Type" header
+					})
 					const data = await resp.json()
 					setStore({ pisos: data })
 					// don't forget to return something, that is how the async resolves
@@ -58,6 +75,41 @@ const getState = ({ getStore, getActions, setStore }) => {
 				} catch (error) {
 					console.log("Error loading message from backend", error)
 				}
+			},
+			login: async (credentials) => {
+				// console.log(credentials)
+				try {
+					const resp = await fetch(process.env.BACKEND_URL + "/api/login",
+						{
+							method: "POST", // *GET, POST, PUT, DELETE, etc.
+							mode: "cors", // no-cors, *cors, same-origin
+							//cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+							//credentials: "same-origin", // include, *same-origin, omit
+							headers: {
+								"Content-Type": "application/json",
+								// 'Content-Type': 'application/x-www-form-urlencoded',
+							},
+							//redirect: "follow", // manual, *follow, error
+							//referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+							body: JSON.stringify(credentials) // body data type must match "Content-Type" header
+						})
+					const data = await resp.json()
+
+					alert("Bienvenido ha ingresado con exito!")
+
+					localStorage.setItem('token', data.token)
+					setStore({ token: data.token })
+					// don't forget to return something, that is how the async resolves
+					return true;
+				} catch (error) {
+					console.log("Error loading message from backend", error)
+				}
+
+
+			},
+			logOut: () => {
+				setStore({ token: null })
+				localStorage.removeItem('token')
 			},
 			newPiso: async (piso) => {
 				try {

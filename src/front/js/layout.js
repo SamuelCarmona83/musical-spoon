@@ -17,6 +17,8 @@ import { Profile } from "./pages/profile";
 import { NewFloor } from "./pages/newFloor";
 import { ExploreFloors } from "./pages/exploreFloors";
 
+import { Login } from "./pages/login";
+
 //create your first component
 const Layout = () => {
     //the basename is used when your project is published in a subdirectory and not in the root of the domain
@@ -35,9 +37,14 @@ const Layout = () => {
 
                         <Route element={<ExploreFloors />} path="/explore" />
 
+                        <Route element={<Login />} path="/login" />
+
                         <Route element={<Demo />} path="/demo" />
+
                         <Route element={<Publish />} path="/publicar" />
+
                         <Route element={<Profile />} path="/profile/:id" />
+
                         <Route element={<NewFloor />} path="/new/piso/:id" />
                         <Route element={<FloorDetail />} path="/piso/:id" />
                         <Route element={<Single />} path="/single/:theid" />

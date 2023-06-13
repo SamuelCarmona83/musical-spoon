@@ -1,12 +1,20 @@
 import React, { useContext, useEffect } from "react"
 import { Context } from "../store/appContext"
+import { useNavigate } from "react-router-dom";
 
 export const ExploreFloors = () => {
 
     const { store, actions } = useContext(Context);
 
+    const navigate = useNavigate();
+
+
+    if (!store.token) {
+        navigate("/")
+    }
+
     useEffect(() => {
-        actions.getPisos()
+        actions.getPisos();
     }, [])
 
     return (
@@ -20,7 +28,7 @@ export const ExploreFloors = () => {
             </div>
             <div className="flex flex-wrap   2xl:flex-wrap gap-4 max-w-7xl mx-auto">
                 {
-                    store.pisos.map((house) =>
+                    store.token && store.pisos.map((house) =>
 
                         <div className="items-center justify-center mx-auto">
 
