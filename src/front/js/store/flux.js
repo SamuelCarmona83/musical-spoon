@@ -112,7 +112,32 @@ const getState = ({ getStore, getActions, setStore }) => {
 				localStorage.removeItem('token')
 			},
 			newPiso: async (piso) => {
+
 				try {
+
+					const apiUrl = `https://api.cloudinary.com/v1_1/dd0wschpy/image/upload`
+
+					const formMultimedia = new FormData()
+
+					formMultimedia.append("upload_preset", "sruvlfnt")
+					formMultimedia.append("file", piso.photo)
+
+					const respMediaBucket = await fetch(apiUrl, {
+						method: "POST", // *GET, POST, PUT, DELETE, etc.
+						//mode: "no-cors", // no-cors, *cors, same-origin
+						//cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+						//credentials: "same-origin", // include, *same-origin, omit
+						headers: {
+							"Content-Type": "multipart/form-data",
+						},
+						//redirect: "follow", // manual, *follow, error
+						//referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+						body: formMultimedia // body data type must match "Content-Type" header
+					})
+
+					const dataCloudinary = await respMediaBucket.json()
+
+					console.log(dataCloudinary)
 
 					const resp = await fetch(process.env.BACKEND_URL + "/api/piso", {
 						method: "POST", // *GET, POST, PUT, DELETE, etc.
@@ -125,7 +150,17 @@ const getState = ({ getStore, getActions, setStore }) => {
 						},
 						//redirect: "follow", // manual, *follow, error
 						//referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-						body: JSON.stringify(piso) // body data type must match "Content-Type" header
+						body: JSON.stringify({
+							"name": piso.name,
+							"description": piso.description,
+							"address": piso.address,
+							"area": piso.area,
+							"rooms": piso.rooms,
+							"baths": piso.baths,
+							"parking_slots": piso.parking_slots,
+							"image": dataCloudinary.url
+
+						}) // body data type must match "Content-Type" header
 					})
 					const data = await resp.json();
 

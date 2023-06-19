@@ -74,6 +74,21 @@ export const NewFloor = () => {
                                     onChange={(evt) => setFloor({ ...floor, parking_slots: evt.target.value })}
                                 />
                             </div>
+
+                            <div className="mb-4">
+                                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="name">Photo</label>
+                                <input className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-primary"
+                                    type="file"
+                                    accept="image/*"
+                                    onChange={(evt) => {
+
+                                        //console.log(evt.target.files)
+
+                                        setFloor({ ...floor, photo: evt.target.files[0] })
+                                    }}
+                                />
+                            </div>
+
                             <button
                                 className="w-full bg-primary text-white text-sm font-bold py-2 px-4 rounded-md hover:bg-dark transition duration-300"
                                 onClick={publishFloor}

@@ -42,7 +42,9 @@ class Piso(db.Model):
     bathrooms_number = db.Column(db.Integer, nullable=False)
     parking_slots = db.Column(db.Integer, nullable=False)
 
-    def __init__(self, name, description, address, area, rooms_n, bath_n, parking_s):
+    image_url = db.Column(db.String(480), nullable=False)
+
+    def __init__(self, name, description, address, area, rooms_n, bath_n, parking_s, image_url):
         self.name = name
         self.description = description
         self.address = address
@@ -50,6 +52,7 @@ class Piso(db.Model):
         self.rooms_number = rooms_n
         self.bathrooms_number = bath_n
         self.parking_slots = parking_s
+        self.image_url = image_url
 
     def serialize(self):
         return {
@@ -59,5 +62,6 @@ class Piso(db.Model):
             "area": str(self.area) + ' m^2',
             "baths": self.bathrooms_number,
             "rooms": self.rooms_number,
-            "parkings": self.parking_slots
+            "parkings": self.parking_slots,
+            "photo": self.image_url
         }

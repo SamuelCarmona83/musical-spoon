@@ -99,9 +99,10 @@ def new_piso():
         return jsonify({ "message" : "el piso no tiene numero de baños, asegurese de enviar 'baths; en el body ⛔️" }), 400
     if "parking_slots" not in body:
         return jsonify({ "message" : "el piso no tiene plazas de estacionamiento, asegurese de enviar 'parking_slots; en el body ⛔️" }), 400
-    
+    if "image" not in body:
+        return jsonify({ "message" : "el piso no tiene plazas de estacionamiento, asegurese de enviar 'image; en el body ⛔️" }), 400
     try:
-        nuevo_piso = Piso(body['name'], body['description'], body['address'], body['area'], body['rooms'], body['baths'], body['parking_slots'])
+        nuevo_piso = Piso(body['name'], body['description'], body['address'], body['area'], body['rooms'], body['baths'], body['parking_slots'], body['image'])
 
         print(nuevo_piso) # Object of type Piso || an Instance of class Piso
 
