@@ -61,6 +61,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						//credentials: "same-origin", // include, *same-origin, omit
 						headers: {
 							//"Content-Type": "application/json",
+							'Access-Control-Allow-Origin': "*",
 							"Authorization": "Bearer " + store.token
 							// 'Content-Type': 'application/x-www-form-urlencoded',
 						},
@@ -124,12 +125,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 					const respMediaBucket = await fetch(apiUrl, {
 						method: "POST", // *GET, POST, PUT, DELETE, etc.
-						//mode: "no-cors", // no-cors, *cors, same-origin
-						//cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
-						//credentials: "same-origin", // include, *same-origin, omit
-						headers: {
-							"Content-Type": "multipart/form-data",
-						},
 						//redirect: "follow", // manual, *follow, error
 						//referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
 						body: formMultimedia // body data type must match "Content-Type" header
